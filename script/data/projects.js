@@ -8,7 +8,7 @@ const projectComponents = [
 ];
 
 async function getProjectInRegistry(key) {
-    const response = await fetch(window.json_dir + 'projects.json');
+    const response = await fetch(window.json_url + 'projects.json');
     const json = await response.json();
 
     if (json.vedette && json.vedette.key === key) {

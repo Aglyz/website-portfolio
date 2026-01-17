@@ -8,7 +8,7 @@ function TableOfContent({ objects, json, panel, refnav }) {
         throw TypeError(`You cannot specified a panels with a json or objects. Note : You shouln't call TableOfContent withe the param panel`);
     }
 
-    const url = json_dir + json;
+    const url = json_url + json;
     const [items, setItems] = React.useState(null);
     const [table, setTable] = React.useState(null);
     const [tabPanels, setTabPanels] = React.useState(panel);

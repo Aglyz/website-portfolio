@@ -237,7 +237,7 @@ function BioInterest() {
 }
 
 function BioInterestMedium() {
-    const url = json_dir + "interest.json";
+    const url = json_url + "interest.json";
     const [items, setItems] = React.useState(null);
     const [rows, setRows] = React.useState([]);
     const columns = 2; 
@@ -293,7 +293,7 @@ function BioInterestMediumItem({ item }) {
 }
 
 function BioInterestLarge() {
-    const url = json_dir + "interest.json";
+    const url = json_url + "interest.json";
     const [items, setItems] = React.useState(null);
     const [rows, setRows] = React.useState([]);
     const columns = 2; 
@@ -367,7 +367,7 @@ function BioShowcase() {
 }
 
 function BioShowcaseNav() {
-    const url = json_dir + "bio-nav.json";
+    const url = json_url + "bio-nav.json";
     const [items, setItems] = React.useState(null);
     
     async function fetchItems() {
@@ -427,7 +427,7 @@ function BioShowcaseNavItem({ item }) {
 }
 
 function BioShowcaseContent() {
-    const url = json_dir + "bio-nav.json";
+    const url = json_url + "bio-nav.json";
     const [items, setItems] = React.useState(null);
     
     async function fetchItems() {
@@ -487,7 +487,7 @@ function ExperiencePane() {
 
 function BioShowcaseItemHead({ item }) {
     let entity = item.entity;
-    let src = img_dir + entity.img;
+    let src = img_url + entity.img;
 
     return (
         <>

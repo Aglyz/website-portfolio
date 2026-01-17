@@ -15,7 +15,7 @@ function CardGrid({ id, objects, json, card, columns, attr }) {
         throw TypeError(breaks.length + ` cards are required ` + card.length + ` given. Give cards related to each break points`);
     }
 
-    const url = json_dir + json ;
+    const url = json_url + json ;
     const [items, setItems] = React.useState([]);
     if (!columns) columns = [2, 3, 4, 5, 5];
     if (!Array.isArray(card)) card = [card, card, card, card, card];

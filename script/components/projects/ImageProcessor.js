@@ -244,7 +244,7 @@ function ImageProcessor({ project }) {
         }
     }, []);
 
-    const project_asset_dir = img_dir + `projects/image-processor/`;
+    const project_asset_url = img_url + `projects/image-processor/`;
 
     return (
         <main id="content" className="container my-5">
@@ -257,7 +257,7 @@ function ImageProcessor({ project }) {
                     <i className="bi bi-github me-2"></i>
                     Code source
                 </a>
-                <a href={asset_dir + `exe/main.exe`} className="btn btn-hover-main lexend shadow ms-auto">
+                <a href={asset_url + `exe/main.exe`} className="btn btn-hover-main lexend shadow ms-auto">
                     <i className="bi bi-filetype-exe me-2"></i>
                     Exécutable
                 </a>
@@ -296,7 +296,7 @@ function ImageProcessor({ project }) {
                         <div className="d-flex align-items-center highlight-toolbar border-bottom">
                             <small className="font-monospace text-body-secondary">Image</small>
                             <div className="d-flex ms-auto">
-                                <a href={project_asset_dir + `background-landscape-wide.ppm`}
+                                <a href={project_asset_url + `background-landscape-wide.ppm`}
                                     type="button" className="btn-download"
                                     data-bs-toggle="tooltip"
                                     data-bs-custom-class="tooltip-main"
@@ -307,7 +307,7 @@ function ImageProcessor({ project }) {
                             </div>
                         </div>
                         <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                            <img src={img_dir + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100"></img>
+                            <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100"></img>
                         </div>
                     </div>
                 </article>
@@ -317,7 +317,7 @@ function ImageProcessor({ project }) {
                             <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                 <small className="font-monospace text-body-secondary">Image</small>
                                 <div className="d-flex ms-auto">
-                                    <a href={project_asset_dir + `background-landscape-wide.ppm`}
+                                    <a href={project_asset_url + `background-landscape-wide.ppm`}
                                         type="button" className="btn-download"
                                         data-bs-toggle="tooltip"
                                         data-bs-custom-class="tooltip-main"
@@ -328,7 +328,7 @@ function ImageProcessor({ project }) {
                                 </div>
                             </div>
                             <div className="highlight-example overflow-hidden d-flex justify-content-center p-2" style={{ maxHeight: 256 + "px"}}>
-                                <img src={img_dir + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100"></img>
+                                <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100"></img>
                             </div>
                         </div>
                     </div>
@@ -353,7 +353,7 @@ function ImageProcessor({ project }) {
                             <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                 <small className="font-monospace text-body-secondary">Image</small>
                                 <div className="d-flex ms-auto">
-                                    <a href={project_asset_dir + `background-landscape-wide.ppm`}
+                                    <a href={project_asset_url + `background-landscape-wide.ppm`}
                                         type="button" className="btn-download"
                                         data-bs-toggle="tooltip"
                                         data-bs-custom-class="tooltip-main"
@@ -364,7 +364,7 @@ function ImageProcessor({ project }) {
                                 </div>
                             </div>
                             <div className="highlight-example overflow-hidden d-flex justify-content-center p-2" style={{ maxHeight: 256 + "px"}}>
-                                <img src={img_dir + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100"></img>
+                                <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100"></img>
                             </div>
                         </div>
                     </div>
@@ -389,7 +389,7 @@ function ImageProcessor({ project }) {
                             <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                 <small className="font-monospace text-body-secondary">Image</small>
                                 <div className="d-flex ms-auto">
-                                    <a href={project_asset_dir + `background-landscape-wide.ppm`}
+                                    <a href={project_asset_url + `background-landscape-wide.ppm`}
                                         type="button" className="btn-download"
                                         data-bs-toggle="tooltip"
                                         data-bs-custom-class="tooltip-main"
@@ -400,7 +400,7 @@ function ImageProcessor({ project }) {
                                 </div>
                             </div>
                             <div className="highlight-example overflow-hidden d-flex justify-content-center p-2" style={{ maxHeight: 256 + "px"}}>
-                                <img src={img_dir + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100"></img>
+                                <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100"></img>
                             </div>
                         </div>
                     </div>
@@ -524,7 +524,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Composante rouge (R)</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-red.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-red.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -535,14 +535,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-red.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante rouge"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-red.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante rouge"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Composante verte (G)</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-green.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-green.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -553,14 +553,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-green.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante verte"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-green.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante verte"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Composante bleue (B)</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-blue.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-blue.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -571,7 +571,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-blue.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante bleue"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-blue.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante bleue"></img>
                                 </div>
                             </div>
                         </div>
@@ -582,7 +582,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Composante rouge (R)</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-red.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-red.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -593,14 +593,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-red.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante rouge"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-red.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante rouge"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Composante verte (G)</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-green.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-green.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -611,14 +611,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-green.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante verte"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-green.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante verte"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Composante bleue (B)</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-blue.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-blue.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -629,7 +629,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-blue.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante bleue"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-blue.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante bleue"></img>
                                 </div>
                             </div>
                         </div>
@@ -640,7 +640,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Image couleur d'origine</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -651,7 +651,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={img_dir + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image couleur d'origine"></img>
+                                    <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image couleur d'origine"></img>
                                 </div>
                             </div>
                         </div>
@@ -661,7 +661,7 @@ function ImageProcessor({ project }) {
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Composante rouge (R)</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-red.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-red.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -672,14 +672,14 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-red.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante rouge"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-red.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante rouge"></img>
                                     </div>
                                 </div>
                                 <div className="box" style={{ height: 200 + "px" }}>
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Composante verte (G)</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-green.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-green.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -690,14 +690,14 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-green.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante verte"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-green.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante verte"></img>
                                     </div>
                                 </div>
                                 <div className="box" style={{ height: 200 + "px" }}>
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Composante bleue (B)</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-blue.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-blue.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -708,7 +708,7 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-blue.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante bleue"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-blue.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante bleue"></img>
                                     </div>
                                 </div>
                             </div>
@@ -720,7 +720,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Image couleur d'origine</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -731,7 +731,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={img_dir + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image couleur d'origine"></img>
+                                    <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image couleur d'origine"></img>
                                 </div>
                             </div>
                         </div>
@@ -741,7 +741,7 @@ function ImageProcessor({ project }) {
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Composante rouge (R)</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-red.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-red.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -752,14 +752,14 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-red.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante rouge"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-red.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante rouge"></img>
                                     </div>
                                 </div>
                                 <div className="box" style={{ height: 256 + "px" }}>
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Composante verte (G)</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-green.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-green.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -770,14 +770,14 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-green.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante verte"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-green.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante verte"></img>
                                     </div>
                                 </div>
                                 <div className="box" style={{ height: 256 + "px" }}>
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Composante bleue (B)</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-blue.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-blue.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -788,7 +788,7 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-blue.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante bleue"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-blue.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante bleue"></img>
                                     </div>
                                 </div>
                             </div>
@@ -819,7 +819,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Image d'origine</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -830,7 +830,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={img_dir + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image d'origine"></img>
+                                    <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image d'origine"></img>
                                 </div>
                             </div>
                         </div>
@@ -863,7 +863,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Niveaux de gris</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-gray.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-gray.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -874,14 +874,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-gray.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Niveaux de gris"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-gray.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Niveaux de gris"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Noir et blanc (seuillage)</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-black-n-white.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-black-n-white.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -892,7 +892,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-black-n-white.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Noir et blanc (seuillage)"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-black-n-white.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Noir et blanc (seuillage)"></img>
                                 </div>
                             </div>
                         </div>
@@ -903,7 +903,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Niveaux de gris</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-gray.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-gray.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -914,14 +914,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-gray.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Niveaux de gris"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-gray.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Niveaux de gris"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Noir et blanc (seuillage)</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-black-n-white.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-black-n-white.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -932,7 +932,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-black-n-white.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Noir et blanc (seuillage)"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-black-n-white.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Noir et blanc (seuillage)"></img>
                                 </div>
                             </div>
                         </div>
@@ -943,7 +943,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Image d'origine</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -954,7 +954,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={img_dir + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image d'origine"></img>
+                                    <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image d'origine"></img>
                                 </div>
                             </div>
                         </div>
@@ -964,7 +964,7 @@ function ImageProcessor({ project }) {
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Niveaux de gris</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-gray.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-gray.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -975,14 +975,14 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-gray.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Niveaux de gris"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-gray.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Niveaux de gris"></img>
                                     </div>
                                 </div>
                                 <div className="box" style={{ height: 256 + "px" }}>
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Noir et blanc (seuillage)</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-black-n-white.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-black-n-white.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -993,7 +993,7 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-black-n-white.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Noir et blanc (seuillage)"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-black-n-white.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Noir et blanc (seuillage)"></img>
                                     </div>
                                 </div>
                             </div>
@@ -1015,7 +1015,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Rotation 90°</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-90.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-90.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1026,14 +1026,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-90.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 90°"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-90.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 90°"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Rotation 180°</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-180.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-180.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1044,7 +1044,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-180.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 180°"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-180.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 180°"></img>
                                 </div>
                             </div>
                         </div>
@@ -1054,7 +1054,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Cropage</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-cropped.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-cropped.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1065,14 +1065,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-cropped.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Cropage"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-cropped.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Cropage"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Agrandissement</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-zoom-out.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-zoom-out.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1083,14 +1083,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-zoom-out.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Agrandissement"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-zoom-out.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Agrandissement"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Rétrécissement</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-zoom-in.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-zoom-in.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1101,7 +1101,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-zoom-in.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rétrécissement"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-zoom-in.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rétrécissement"></img>
                                 </div>
                             </div>
                         </div>
@@ -1114,7 +1114,7 @@ function ImageProcessor({ project }) {
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Rotation 90°</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-90.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-90.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -1125,14 +1125,14 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-90.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 90°"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-90.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 90°"></img>
                                     </div>
                                 </div>
                                 <div className="box" style={{ height: 200 + "px" }}>
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Rotation 180°</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-180.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-180.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -1143,7 +1143,7 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-180.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 180°"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-180.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 180°"></img>
                                     </div>
                                 </div>
                             </div>
@@ -1155,7 +1155,7 @@ function ImageProcessor({ project }) {
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Cropage</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-cropped.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-cropped.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -1166,14 +1166,14 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-cropped.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Cropage"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-cropped.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Cropage"></img>
                                     </div>
                                 </div>
                                 <div className="box" style={{ height: 200 + "px" }}>
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Agrandissement</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-zoom-out.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-zoom-out.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -1184,14 +1184,14 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-zoom-out.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Agrandissement"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-zoom-out.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Agrandissement"></img>
                                     </div>
                                 </div>
                                 <div className="box" style={{ height: 200 + "px" }}>
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Rétrécissement</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-zoom-in.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-zoom-in.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -1202,7 +1202,7 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-zoom-in.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rétrécissement"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-zoom-in.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rétrécissement"></img>
                                     </div>
                                 </div>
                             </div>
@@ -1217,7 +1217,7 @@ function ImageProcessor({ project }) {
                                         <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                             <small className="font-monospace text-body-secondary">Rotation 90°</small>
                                             <div className="d-flex ms-auto">
-                                                <a href={project_asset_dir + `background-landscape-wide-90.ppm`}
+                                                <a href={project_asset_url + `background-landscape-wide-90.ppm`}
                                                     type="button" className="btn-download"
                                                     data-bs-toggle="tooltip"
                                                     data-bs-custom-class="tooltip-main"
@@ -1228,14 +1228,14 @@ function ImageProcessor({ project }) {
                                             </div>
                                         </div>
                                         <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                            <img src={project_asset_dir + `background-landscape-wide-90.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 90°"></img>
+                                            <img src={project_asset_url + `background-landscape-wide-90.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 90°"></img>
                                         </div>
                                     </div>
                                     <div className="box" style={{ height: 256 + "px" }}>
                                         <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                             <small className="font-monospace text-body-secondary">Rotation 180°</small>
                                             <div className="d-flex ms-auto">
-                                                <a href={project_asset_dir + `background-landscape-wide-180.ppm`}
+                                                <a href={project_asset_url + `background-landscape-wide-180.ppm`}
                                                     type="button" className="btn-download"
                                                     data-bs-toggle="tooltip"
                                                     data-bs-custom-class="tooltip-main"
@@ -1246,7 +1246,7 @@ function ImageProcessor({ project }) {
                                             </div>
                                         </div>
                                         <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                            <img src={project_asset_dir + `background-landscape-wide-180.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 180°"></img>
+                                            <img src={project_asset_url + `background-landscape-wide-180.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 180°"></img>
                                         </div>
                                     </div>
                                 </div>
@@ -1260,7 +1260,7 @@ function ImageProcessor({ project }) {
                                         <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                             <small className="font-monospace text-body-secondary">Cropage</small>
                                             <div className="d-flex ms-auto">
-                                                <a href={project_asset_dir + `background-landscape-wide-cropped.ppm`}
+                                                <a href={project_asset_url + `background-landscape-wide-cropped.ppm`}
                                                     type="button" className="btn-download"
                                                     data-bs-toggle="tooltip"
                                                     data-bs-custom-class="tooltip-main"
@@ -1271,14 +1271,14 @@ function ImageProcessor({ project }) {
                                             </div>
                                         </div>
                                         <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                            <img src={project_asset_dir + `background-landscape-wide-cropped.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Cropage"></img>
+                                            <img src={project_asset_url + `background-landscape-wide-cropped.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Cropage"></img>
                                         </div>
                                     </div>
                                     <div className="box" style={{ height: 256 + "px" }}>
                                         <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                             <small className="font-monospace text-body-secondary">Agrandissement</small>
                                             <div className="d-flex ms-auto">
-                                                <a href={project_asset_dir + `background-landscape-wide-zoom-out.ppm`}
+                                                <a href={project_asset_url + `background-landscape-wide-zoom-out.ppm`}
                                                     type="button" className="btn-download"
                                                     data-bs-toggle="tooltip"
                                                     data-bs-custom-class="tooltip-main"
@@ -1289,14 +1289,14 @@ function ImageProcessor({ project }) {
                                             </div>
                                         </div>
                                         <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                            <img src={project_asset_dir + `background-landscape-wide-zoom-out.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Agrandissement"></img>
+                                            <img src={project_asset_url + `background-landscape-wide-zoom-out.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Agrandissement"></img>
                                         </div>
                                     </div>
                                     <div className="box" style={{ height: 256 + "px" }}>
                                         <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                             <small className="font-monospace text-body-secondary">Rétrécissement</small>
                                             <div className="d-flex ms-auto">
-                                                <a href={project_asset_dir + `background-landscape-wide-zoom-in.ppm`}
+                                                <a href={project_asset_url + `background-landscape-wide-zoom-in.ppm`}
                                                     type="button" className="btn-download"
                                                     data-bs-toggle="tooltip"
                                                     data-bs-custom-class="tooltip-main"
@@ -1307,7 +1307,7 @@ function ImageProcessor({ project }) {
                                             </div>
                                         </div>
                                         <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                            <img src={project_asset_dir + `background-landscape-wide-zoom-in.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rétrécissement"></img>
+                                            <img src={project_asset_url + `background-landscape-wide-zoom-in.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rétrécissement"></img>
                                         </div>
                                     </div>
                                 </div>
@@ -1325,7 +1325,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Rotation une</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-filter-rotate-1.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-filter-rotate-1.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1336,14 +1336,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-filter-rotate-1.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation une"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-filter-rotate-1.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation une"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Rotation deux</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-filter-rotate-2.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-filter-rotate-2.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1354,7 +1354,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-filter-rotate-2.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation deux"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-filter-rotate-2.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation deux"></img>
                                 </div>
                             </div>
                         </div>
@@ -1365,7 +1365,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Rotation une</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-filter-rotate-1.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-filter-rotate-1.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1376,14 +1376,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-filter-rotate-1.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation une"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-filter-rotate-1.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation une"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Rotation deux</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-filter-rotate-2.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-filter-rotate-2.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1394,7 +1394,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-filter-rotate-2.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation deux"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-filter-rotate-2.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation deux"></img>
                                 </div>
                             </div>
                         </div>
@@ -1405,7 +1405,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Image d'origine</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1416,7 +1416,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={img_dir + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image d'origine"></img>
+                                    <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image d'origine"></img>
                                 </div>
                             </div>
                         </div>
@@ -1426,7 +1426,7 @@ function ImageProcessor({ project }) {
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Rotation une</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-filter-rotate-1.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-filter-rotate-1.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -1437,14 +1437,14 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-filter-rotate-1.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation une"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-filter-rotate-1.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation une"></img>
                                     </div>
                                 </div>
                                 <div className="box" style={{ height: 256 + "px" }}>
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Rotation deux</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-filter-rotate-2.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-filter-rotate-2.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -1455,7 +1455,7 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-filter-rotate-2.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation deux"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-filter-rotate-2.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation deux"></img>
                                     </div>
                                 </div>
                             </div>
@@ -1470,7 +1470,7 @@ function ImageProcessor({ project }) {
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Luminosité réduite</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-filter-low-lum.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-filter-low-lum.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -1481,7 +1481,7 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-filter-low-lum.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Luminosité réduite"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-filter-low-lum.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Luminosité réduite"></img>
                                     </div>
                                 </div>
                                 <div className="box" style={{ height: 200 + "px" }}>
@@ -1500,7 +1500,7 @@ function ImageProcessor({ project }) {
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Luminosité augmentée</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-filter-high-lum.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-filter-high-lum.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -1511,7 +1511,7 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-filter-high-lum.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Luminosité augmentée"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-filter-high-lum.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Luminosité augmentée"></img>
                                     </div>
                                 </div>
                                 <div className="box" style={{ height: 200 + "px" }}>
@@ -1532,7 +1532,7 @@ function ImageProcessor({ project }) {
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Luminosité réduite</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-filter-low-lum.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-filter-low-lum.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -1543,7 +1543,7 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-filter-low-lum.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Luminosité réduite"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-filter-low-lum.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Luminosité réduite"></img>
                                     </div>
                                 </div>
                             </div>
@@ -1564,7 +1564,7 @@ function ImageProcessor({ project }) {
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Luminosité augmentée</small>
                                         <div className="d-flex ms-auto">
-                                            <a href={project_asset_dir + `background-landscape-wide-filter-high-lum.ppm`}
+                                            <a href={project_asset_url + `background-landscape-wide-filter-high-lum.ppm`}
                                                 type="button" className="btn-download"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-custom-class="tooltip-main"
@@ -1575,7 +1575,7 @@ function ImageProcessor({ project }) {
                                         </div>
                                     </div>
                                     <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_dir + `background-landscape-wide-filter-high-lum.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Luminosité augmentée"></img>
+                                        <img src={project_asset_url + `background-landscape-wide-filter-high-lum.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Luminosité augmentée"></img>
                                     </div>
                                 </div>
                             </div>
@@ -1599,7 +1599,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Contraste réduit</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-filter-low-con.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-filter-low-con.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1610,14 +1610,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-filter-low-con.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Contraste réduit"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-filter-low-con.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Contraste réduit"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Contraste augmenté</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-filter-high-con.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-filter-high-con.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1628,7 +1628,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-filter-high-con.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Contraste augmenté"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-filter-high-con.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Contraste augmenté"></img>
                                 </div>
                             </div>
                         </div>
@@ -1639,7 +1639,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Contraste réduit</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-filter-low-con.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-filter-low-con.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1650,7 +1650,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-filter-low-con.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Contraste réduit"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-filter-low-con.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Contraste réduit"></img>
                                 </div>
                             </div>
                         </div>
@@ -1659,7 +1659,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Contraste augmenté</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-filter-high-con.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-filter-high-con.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1670,7 +1670,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-filter-high-con.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Contraste augmenté"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-filter-high-con.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Contraste augmenté"></img>
                                 </div>
                             </div>
                         </div>
@@ -1683,7 +1683,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Deuteranopie</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-deuteranope.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-deuteranope.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1694,14 +1694,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-deuteranope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Deuteranopie"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-deuteranope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Deuteranopie"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Protanopie</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-protanope.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-protanope.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1712,14 +1712,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-protanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Protanopie"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-protanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Protanopie"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Tripanopie</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-tripanope.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-tripanope.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1730,7 +1730,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-tripanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Tripanopie"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-tripanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Tripanopie"></img>
                                 </div>
                             </div>
                         </div>
@@ -1741,7 +1741,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Deuteranopie</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-deuteranope.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-deuteranope.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1752,14 +1752,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-deuteranope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Deuteranopie"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-deuteranope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Deuteranopie"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Protanopie</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-protanope.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-protanope.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1770,14 +1770,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-protanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Protanopie"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-protanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Protanopie"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 200 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Tripanopie</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-tripanope.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-tripanope.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1788,7 +1788,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-tripanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Tripanopie"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-tripanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Tripanopie"></img>
                                 </div>
                             </div>
                         </div>
@@ -1799,7 +1799,7 @@ function ImageProcessor({ project }) {
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Deuteranopie</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-deuteranope.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-deuteranope.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1810,14 +1810,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-deuteranope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Deuteranopie"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-deuteranope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Deuteranopie"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 256 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Protanopie</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-protanope.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-protanope.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1828,14 +1828,14 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-protanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Protanopie"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-protanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Protanopie"></img>
                                 </div>
                             </div>
                             <div className="box" style={{ height: 256 + "px" }}>
                                 <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                     <small className="font-monospace text-body-secondary">Tripanopie</small>
                                     <div className="d-flex ms-auto">
-                                        <a href={project_asset_dir + `background-landscape-wide-tripanope.ppm`}
+                                        <a href={project_asset_url + `background-landscape-wide-tripanope.ppm`}
                                             type="button" className="btn-download"
                                             data-bs-toggle="tooltip"
                                             data-bs-custom-class="tooltip-main"
@@ -1846,7 +1846,7 @@ function ImageProcessor({ project }) {
                                     </div>
                                 </div>
                                 <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_dir + `background-landscape-wide-tripanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Tripanopie"></img>
+                                    <img src={project_asset_url + `background-landscape-wide-tripanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Tripanopie"></img>
                                 </div>
                             </div>
                         </div>

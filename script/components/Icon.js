@@ -31,7 +31,7 @@ const iconMap = {
 // ---------------------------- Icons
 
 function GithubIcon({ attr }) {
-    const src = icon_dir + "github-icon-480x480.png";
+    const src = icon_url + "github-icon-480x480.png";
     const attrs = "icon" + " " + attr;
 
     return (
@@ -42,7 +42,7 @@ function GithubIcon({ attr }) {
 }
 
 function LinkedinIcon({ attr }) {
-    const src = icon_dir + "linkedin-icon-480x480.png";
+    const src = icon_url + "linkedin-icon-480x480.png";
     const attrs = "icon" + " " + attr;
 
     return (

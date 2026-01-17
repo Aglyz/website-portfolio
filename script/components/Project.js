@@ -124,7 +124,7 @@ function ProjectsMain({ flag }) {
     const [domains, setDomains] = React.useState([]);
     const [filterObject, setFilterObject] = React.useState({});
     const [filter, setFilter] = React.useState([]);
-    const url = json_dir + "projects.json";
+    const url = json_url + "projects.json";
     
     async function fetchItems() {
         const response = await fetch(url);
@@ -134,7 +134,7 @@ function ProjectsMain({ flag }) {
     };
 
     async function fetchFilter() {
-        const response = await fetch(json_dir + "filter.json");
+        const response = await fetch(json_url + "filter.json");
         const json = await response.json();
         setTags(json.tags);
         setDomains(json.domains);
@@ -396,7 +396,7 @@ function ProjectItemVedette({ item }) {
                         </div>
                     </div>
                 </div>
-                <img src={img_dir + item.image} alt={item.title} className="project-img rounded"/>
+                <img src={img_url + item.image} alt={item.title} className="project-img rounded"/>
             </div>
         </a>
     );
@@ -417,7 +417,7 @@ function ProjectItemVedetteSmall({ item }) {
                     <div className="my-auto">
                         <p className="project-title lexend h1 my-2">{item.title}</p>
                     </div>
-                    <img src={img_dir + item.image} alt={item.title} className="project-img rounded my-2"/>
+                    <img src={img_url + item.image} alt={item.title} className="project-img rounded my-2"/>
                     <div className="my-auto">
                         <p className="project-text d-flex align-items-center text-muted my-2">{item.description}</p>
                         <div className="project-tags mt-4">
@@ -458,7 +458,7 @@ function ProjectItemLarge({ item }) {
                         </div>
                     </div>
                 </div>
-                <img src={img_dir + item.image} alt={item.title} className="project-img rounded"/>
+                <img src={img_url + item.image} alt={item.title} className="project-img rounded"/>
             </div>
         </a>
     );
@@ -488,7 +488,7 @@ function ProjectItemMedium({ item }) {
                         </div>
                     </div>
                 </div>
-                <img src={img_dir + item.image} alt={item.title} className="project-img rounded"/>
+                <img src={img_url + item.image} alt={item.title} className="project-img rounded"/>
             </div>
         </a>
     );

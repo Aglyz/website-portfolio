@@ -2,11 +2,11 @@ const app = document.getElementById('app');
 const body = document.getElementsByTagName('body')[0];
 
 const root_url = body.id === "page-main" ? "view/" : "";
-const asset_dir = body.id === "page-main" ? "assets/" : "../assets/";
-const icon_dir = asset_dir + "icons/";
-const json_dir = asset_dir + "json/";
-const svg_dir = asset_dir + "svg/";
-const img_dir = asset_dir + "images/";
+const asset_url = "https://assets.portfolio-agly.synology.me/assets/";
+const icon_url = asset_url + "icons/";
+const json_url = asset_url + "json/";
+const svg_url = asset_url + "svg/";
+const img_url = asset_url + "images/";
 
 const project_components_dir = (body.id === "page-main" ? "script/" : "../script/") + "components/projects/";
 const experience_components_dir = (body.id === "page-main" ? "script/" : "../script/") + "components/experiences/";
@@ -30,10 +30,10 @@ window.app = app;
 window.body = body;
 
 window.root_url = root_url;
-window.asset_dir = asset_dir;
-window.icon_dir = icon_dir;
-window.svg_dir = svg_dir;
-window.img_dir = img_dir;
+window.asset_url = asset_url;
+window.icon_url = icon_url;
+window.svg_url = svg_url;
+window.img_url = img_url;
 
 window.project_components_dir = project_components_dir;
 window.experience_components_dir = experience_components_dir;

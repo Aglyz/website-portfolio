@@ -1,5 +1,5 @@
 function CardCarousel({ id, json }) {
-    const url = json_dir + json ;
+    const url = json_url + json ;
     const [items, setItems] = React.useState(null);
     const [activeIndex, setActiveIndex] = React.useState(0);
     
@@ -35,7 +35,7 @@ function CardCarousel({ id, json }) {
                 <div className="carousel-inner">
                     {items ? items.map((item, index) => (
                     <div className={`carousel-item${index === 0 ? ' active' : ''}`} key={item.key}>
-                        <img src={img_dir + item.src} className="d-block img-fluid" alt={item.alt}></img>
+                        <img src={img_url + item.src} className="d-block img-fluid" alt={item.alt}></img>
                     </div>
                     )) : null}
                 </div>

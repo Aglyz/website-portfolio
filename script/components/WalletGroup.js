@@ -1,5 +1,5 @@
 function ListGroupWallet({ id , json, body, head, groups }) {
-    const url = json_dir + json;
+    const url = json_url + json;
     const [items, setItems] = React.useState(null);
     const [grid, setGrid] = React.useState([]);
     if(!groups) groups = 1;

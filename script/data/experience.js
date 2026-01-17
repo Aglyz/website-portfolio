@@ -4,7 +4,7 @@ const experienceComponents = [
 ];
 
 async function getExperienceInRegistry(key) {
-    const response = await fetch(window.json_dir + 'experience.json');
+    const response = await fetch(window.json_url + 'experience.json');
     const json = await response.json();
 
     if (json.vedette && json.vedette.key === key) {

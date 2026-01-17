@@ -1,7 +1,7 @@
 function SideBar() {
 
     React.useEffect(() => {
-        const url = svg_dir + "expand-sidebar.json";
+        const url = svg_url + "expand-sidebar.json";
         const container = document.getElementById("container-sidebar-mobile");
         const bar = document.getElementById("navigation-sidebar-mobile");
         const toggle = document.getElementById("side-bar-button");
@@ -46,7 +46,7 @@ function SideBar() {
 
 function SideBarButton() {
 
-    const url = svg_dir + "expand-sidebar.json";
+    const url = svg_url + "expand-sidebar.json";
 
     React.useEffect(() => {
         let bar = document.getElementById("navigation-sidebar-mobile");

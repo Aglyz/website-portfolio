@@ -20,7 +20,7 @@ function Banner() {
 }
 
 function ProfilImage() {
-    let src = img_dir + "me-portrait.jpg";
+    let src = img_url + "me-portrait.jpg";
 
     return (
         <picture id="profil-image" className="rounded">
