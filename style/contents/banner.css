@@ -9,7 +9,7 @@
     background-size: cover;
     background-position-x: center;
     background-position-y: center;
-    background-image: linear-gradient(var(--black-cover), var(--black-cover)), url("../../assets/images/background-landscape-wide.jpg");
+    background-image: linear-gradient(var(--black-cover), var(--black-cover)), url("https://assets.portfolio-agly.synology.me/assets/images/background-landscape-wide.jpg");
 }
 
 #inner-banner {
