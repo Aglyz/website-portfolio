@@ -32,7 +32,7 @@ function ProfilImage() {
 function ProfilShowcase() {
     return (
         <div id="profil-showcase" className="d-flex flex-column flex-nowrap align-items-center justify-content-center">
-            <h1 className="lexend">Aëlig Jimenez</h1>
+            <h1 className="lexend">Aëlig Jiménez</h1>
             <p className="lexend">Développeur &nbsp;•&nbsp; Application &nbsp;•&nbsp; Web &nbsp;•&nbsp; Jeux Vidéo</p>
             <nav className="container d-flex flex-row flex-nowrap align-items-center justify-content-evenly">
                 {iconMap["GithubIcon"]("focus-link")}

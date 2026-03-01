@@ -43,7 +43,7 @@ function Signature() {
     return (
         <a id="signature" className="navbar-brand w-100 mx-4" href={href}>
             {/* img src="assets/images/profil-signature.gif" alt="Logo" className="-inline-block align-text-top" */}
-            Aëlig Jimenez
+            Aëlig Jiménez
         </a>
     );
 }

@@ -1,4 +1,4 @@
-function ListGroupWallet({ id , json, body, head, groups }) {
+function ListGroupWallet({ id , json, body, head, groups, expanded=false }) {
     const url = json_url + json;
     const [items, setItems] = React.useState(null);
     const [grid, setGrid] = React.useState([]);
@@ -64,14 +64,17 @@ function ListGroupWallet({ id , json, body, head, groups }) {
         <>{grid ? grid.map((group, index) => (
             <ul id={id + "-" + index} className="list-group list-group-wallet" key={id + ".group." + index}>
                 {group.map((item) => (
-                    <ListGroupWalletItem item={item} body={body} head={head} key={id + "." + item.key} />
+                    <ListGroupWalletItem item={item} body={body} head={head} expanded={expanded} key={id + "." + item.key} />
                 ))}
             </ul>
         )) : null}</>
     );
 }
 
-function ListGroupWalletItem({ item, body, head }) {
+function ListGroupWalletItem({ item, body, head, expanded=false }) {
+    let desc_classes = "list-group-item list-group-item-action description";
+    desc_classes += expanded ? " expanded" : "";
+
     return (
         <>
             <li className="list-group-item list-group-item-action">
@@ -81,7 +84,7 @@ function ListGroupWalletItem({ item, body, head }) {
                     {item.name}
                 </div>}
             </li>
-            <li className="list-group-item list-group-item-action description">
+            <li className={desc_classes}>
                 {body ? body(item) : item.desc}
             </li>
         </>

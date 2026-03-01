@@ -5,7 +5,10 @@ const root_url = body.id === "page-main" ? "view/" : "";
 const asset_url = "https://assets.portfolio-agly.synology.me/assets/";
 const icon_url = asset_url + "icons/";
 const json_url = asset_url + "json/";
+const exe_url = asset_url + "exe/";
 const svg_url = asset_url + "svg/";
+const pdf_url = asset_url + "pdf/";
+const docs_url = asset_url + "docs/";
 const img_url = asset_url + "images/";
 
 const project_components_dir = (body.id === "page-main" ? "script/" : "../script/") + "components/projects/";
@@ -32,7 +35,11 @@ window.body = body;
 window.root_url = root_url;
 window.asset_url = asset_url;
 window.icon_url = icon_url;
+window.json_url = json_url;
+window.exe_url = exe_url;
 window.svg_url = svg_url;
+window.pdf_url = pdf_url;
+window.docs_url = docs_url;
 window.img_url = img_url;
 
 window.project_components_dir = project_components_dir;

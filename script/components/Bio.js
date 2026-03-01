@@ -106,7 +106,7 @@ function BioPage({ flag }) {
 function BioHeader() {
     return (
         <header className="d-flex flex-column flex-nowrap align-items-start justify-content-center gap-2 h-100 page-title">
-            <h1 className="lexend">Bio — A Propos de Aëlig</h1>
+            <h1 className="lexend">Bio — A Propos d'Aëlig</h1>
             <p className="lexend">Explorez mes centres intérêts, mes projets et mes passions !</p>
         </header>
     );
@@ -176,10 +176,12 @@ function BioAboutMe() {
         <section id="about-me" className="w-100">
             <h1 className="lexend fw--normal w-100 text-center">A propos</h1>
             <p className="lexend w-100 text-center">
-                Je suis Aëlig Jimenez,
-                je suis étudiant 2e année à l’IUT de Paris-Saclay.
-                Je suis un grand passionné par l'informatique, et surtout par la programmation,
-                l'algorithmique et les jeux vidéo
+                Je suis Aëlig Jiménez,
+                je suis étudiant 3e année année de BUT informatique parcours réalisation d'applications : « conception, développement, validation » à l’IUT de Paris-Saclay et en Alternance chez la maison d'édition ELLIPSES.
+                <br/> <br/>
+                Passionné par la programmation, je suis curieux des nouvelles technologies et des innovations dans l'informatiques et les sciences.
+                Ce qui m’anime par-dessus tout, c’est l’algorithmie : j'aime comprendre les logiques, décortiquer les raisonnements et optimiser les solutions.
+                J’apprécie d’autant plus lorsqu'elles sont appliquées, notamment dans le domaine du jeu vidéo.
             </p>
             <div className="d-flex flex-row flex-nowrap justify-content-evenly gap-3 w-100">
                 <CVButton />
@@ -190,8 +192,10 @@ function BioAboutMe() {
 }
 
 function CVButton() {
+    let src = pdf_url + "Aëlig JIMENEZ CV.pdf";
+
     return (
-        <a href="../assets/pdf/Aëlig JIMENEZ CV.pdf" className="btn btn-outline-main w-100 lexend">
+        <a href={src} className="btn btn-outline-main w-100 lexend">
             <div className="d-flex flex-row flex-nowrap align-items-center justify-content-center gap-3">
                 <svg className="i-document center-verticaly" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
                     <path fillRule="evenodd" clipRule="evenodd" d="M9.29289 1.29289C9.48043 1.10536 9.73478 1 10 1H18C19.6569 1 21 2.34315 21 4V20C21 21.6569 19.6569 23 18 23H6C4.34315 23 3 21.6569 3 20V8C3 7.73478 3.10536 7.48043 3.29289 7.29289L9.29289 1.29289ZM18 3H11V8C11 8.55228 10.5523 9 10 9H5V20C5 20.5523 5.44772 21 6 21H18C18.5523 21 19 20.5523 19 20V4C19 3.44772 18.5523 3 18 3ZM6.41421 7H9V4.41421L6.41421 7ZM7 13C7 12.4477 7.44772 12 8 12H16C16.5523 12 17 12.4477 17 13C17 13.5523 16.5523 14 16 14H8C7.44772 14 7 13.5523 7 13ZM7 17C7 16.4477 7.44772 16 8 16H16C16.5523 16 17 16.4477 17 17C17 17.5523 16.5523 18 16 18H8C7.44772 18 7 17.5523 7 17Z" />
@@ -224,7 +228,7 @@ function BioInterest() {
         <section id="interests" className="w-100">
             <h1 className="lexend fw--normal w-100 text-center">Centre d'intérêts</h1>
             <div className="content-sm">
-                <ListGroupWallet id="interests-list" json="interest.json" />
+                <ListGroupWallet id="interests-list" expanded={true} json="interest.json" />
             </div>
             <div className="content-md">
                 <BioInterestMedium />
@@ -466,19 +470,19 @@ function ExperiencePane() {
             <section id="education">
                 <h1 className="lexend fw--normal w-100 text-center mb-3">Education</h1>
                 <div className="content-sm">
-                    <ListGroupWallet id="education-list-sm" json="education.json" body={body} head={head} />
+                    <ListGroupWallet id="education-list-sm" expanded={true} json="education.json" body={body} head={head} />
                 </div>
                 <div className="content-lg d-flex flex-row gap-2">
-                    <ListGroupWallet id="education-list-lg" json="education.json" body={body} head={head} groups="2" />
+                    <ListGroupWallet id="education-list-lg" expanded={true} json="education.json" body={body} head={head} groups="2" />
                 </div>
             </section>
             <section id="experience">
                 <h1 className="lexend fw--normal w-100 text-center mt-5 mb-3">Experience</h1>
                 <div className="content-sm">
-                    <ListGroupWallet id="experience-list-sm" json="experience.json" body={body} head={head} />
+                    <ListGroupWallet id="experience-list-sm" expanded={true} json="experience.json" body={body} head={head} />
                 </div>
                 <div className="content-lg d-flex flex-row gap-2">
-                    <ListGroupWallet id="experience-list-lg" json="experience.json" body={body} head={head} groups="2" />
+                    <ListGroupWallet id="experience-list-lg" expanded={true} json="experience.json" body={body} head={head} groups="2" />
                 </div>
             </section>
         </>
@@ -509,11 +513,11 @@ function BioShowcaseItemBody({ item }) {
     return (
         <>
             <p className="mb-0">{item.caption}</p>
-            {item.key.startsWith('experience.') ?
+            {/*item.key.startsWith('experience.') ?
             <a href={`#experience=${item.key}`} className="btn btn-main lexend mt-3 px-4">
                 Voir
                 <i className="bi bi-rocket-takeoff ms-3"></i>
-            </a> : null}
+            </a> : null*/}
             {item.details ?
             <ul className="list-group list-group-flush gap-1 mt-3">
                 {item.details.map((detail) => (
@@ -528,8 +532,8 @@ function BioShowcaseListItem({ detail }) {
     return (
         <li className="list-group-item border-0 p-0">
             {detail.text}
-            {detail.muted ? <span className="text-muted"> — {detail.muted}</span> : <></> }
             {detail.light ? <span className="text-main"> — {detail.light}</span> : <></> }
+            {detail.muted ? <span className="text-muted"> — {detail.muted}</span> : <></> }
         </li>
     );
 }
