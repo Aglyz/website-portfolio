@@ -1,11 +1,72 @@
 function ImageProcessor({ project }) {
 
+    const chart_options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return 'Intensité ' + context.label + ': ' + context.parsed.y + ' pixels';
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    callback: function(value) {
+                        return value > 1000 ? (value / 1000).toFixed(1) + 'k' : value;
+                    }
+                },
+                title: {
+                    display: false,
+                    text: 'Nombre de pixels'
+                }
+            },
+            x: {
+                title: {
+                    display: false,
+                    text: 'Niveau de gris (0-255)'
+                },
+                ticks: {
+                    maxTicksLimit: 20
+                }
+            }
+        }
+    };
+
+    const create_chart = (selector, config) => {
+        const canvases = document.querySelectorAll(selector);
+
+        canvases.forEach(canvas => {
+            new Chart(canvas, {
+                type: 'bar',
+                data: {
+                    labels: config.labels,
+                    datasets: [{
+                        data: config.data,
+                        backgroundColor: 'rgba(112, 8, 231, 0.55)',
+                        borderColor: 'rgba(112, 8, 231, 0.85)',
+                        borderWidth: 0,
+                        categoryPercentage: 1.0,
+                        barPercentage: 1.0
+                    }]
+                },
+                options: chart_options
+            });
+        });
+    };
+
     React.useEffect(() => {
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
         [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
-        const histograms = document.querySelectorAll('.histogram-chart');
-        const histogramConf = {
+        const histogram_config = {
             labels : Array.from({length: 256}, (_, i) => i),
             data : [
                 3311, 7193, 9052, 10619, 11054, 11000, 11918, 12582, 14133, 16182, 19069, 23254, 28747, 35595, 43211, 50322, 
@@ -27,8 +88,7 @@ function ImageProcessor({ project }) {
             ],
         };
 
-        const histogramsLowLum = document.querySelectorAll('.histogram-chart-low-lum');
-        const histogramsLowLumConf = {
+        const histogram_low_lum_config = {
             labels : Array.from({length: 256}, (_, i) => i),
             data : [
                 311071, 20494, 22914, 25133, 32192, 45706, 69294, 99323, 132101, 155901, 175660, 202334, 228101, 247345, 260776, 272973,
@@ -43,8 +103,7 @@ function ImageProcessor({ project }) {
             ],
         };
 
-        const histogramsHighLum = document.querySelectorAll('.histogram-chart-high-lum');
-        const histogramsHighLumConf = {
+        const histogram_high_lum_config = {
             labels : Array.from({length: 256}, (_, i) => i),
             data : [
                 1565, 4765, 4739, 6217, 6847, 7420, 7445, 7445, 7986, 7687, 8509, 8728, 9446, 10698, 11767, 12248,
@@ -66,185 +125,18 @@ function ImageProcessor({ project }) {
             ],
         };
 
-        if (histograms) {
-            histograms.forEach((canvas) => {
-                new Chart(canvas, {
-                    type: 'bar',
-                    data: {
-                        labels: histogramConf.labels,
-                        datasets: [{
-                            label: 'Distribution des niveaux de gris',
-                            data: histogramConf.data,
-                            backgroundColor: 'rgba(112, 8, 231, 0.55)',
-                            borderColor: 'rgba(112, 8, 231, 0.85)',
-                            borderWidth: 0,
-                            categoryPercentage: 1.0,
-                            barPercentage: 1.0
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                display: false
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        return 'Intensité ' + context.label + ': ' + context.parsed.y + ' pixels';
-                                    }
-                                }
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    callback: function(value) {
-                                        return value > 1000 ? (value / 1000).toFixed(1) + 'k' : value;
-                                    }
-                                },
-                                title: {
-                                    display: false,
-                                    text: 'Nombre de pixels'
-                                }
-                            },
-                            x: {
-                                title: {
-                                    display: false,
-                                    text: 'Niveau de gris (0-255)'
-                                },
-                                ticks: {
-                                    maxTicksLimit: 20
-                                }
-                            }
-                        }
-                    }
-                });
-            });
-        }
+        create_chart('.histogram-chart', histogram_config);
 
-        if (histogramsLowLum) {
-            histogramsLowLum.forEach((canvas) => {
-                new Chart(canvas, {
-                    type: 'bar',
-                    data: {
-                        labels: histogramsLowLumConf.labels,
-                        datasets: [{
-                            label: 'Distribution des niveaux de gris',
-                            data: histogramsLowLumConf.data,
-                            backgroundColor: 'rgba(112, 8, 231, 0.55)',
-                            borderColor: 'rgba(112, 8, 231, 0.85)',
-                            borderWidth: 0,
-                            categoryPercentage: 1.0,
-                            barPercentage: 1.0
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                display: false
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        return 'Intensité ' + context.label + ': ' + context.parsed.y + ' pixels';
-                                    }
-                                }
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    callback: function(value) {
-                                        return value > 1000 ? (value / 1000).toFixed(1) + 'k' : value;
-                                    }
-                                },
-                                title: {
-                                    display: false,
-                                    text: 'Nombre de pixels'
-                                }
-                            },
-                            x: {
-                                title: {
-                                    display: false,
-                                    text: 'Niveau de gris (0-255)'
-                                },
-                                ticks: {
-                                    maxTicksLimit: 20
-                                }
-                            }
-                        }
-                    }
-                });
-            });
-        }
+        create_chart('.histogram-chart-low-lum', histogram_low_lum_config);
 
-        if (histogramsHighLum) {
-            histogramsHighLum.forEach((canvas) => {
-                new Chart(canvas, {
-                    type: 'bar',
-                    data: {
-                        labels: histogramsHighLumConf.labels,
-                        datasets: [{
-                            label: 'Distribution des niveaux de gris',
-                            data: histogramsHighLumConf.data,
-                            backgroundColor: 'rgba(112, 8, 231, 0.55)',
-                            borderColor: 'rgba(112, 8, 231, 0.85)',
-                            borderWidth: 0,
-                            categoryPercentage: 1.0,
-                            barPercentage: 1.0
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                display: false
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        return 'Intensité ' + context.label + ': ' + context.parsed.y + ' pixels';
-                                    }
-                                }
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    callback: function(value) {
-                                        return value > 1000 ? (value / 1000).toFixed(1) + 'k' : value;
-                                    }
-                                },
-                                title: {
-                                    display: false,
-                                    text: 'Nombre de pixels'
-                                }
-                            },
-                            x: {
-                                title: {
-                                    display: false,
-                                    text: 'Niveau de gris (0-255)'
-                                },
-                                ticks: {
-                                    maxTicksLimit: 20
-                                }
-                            }
-                        }
-                    }
-                });
-            });
-        }
+        create_chart('.histogram-chart-high-lum', histogram_high_lum_config);
     }, []);
 
     const project_asset_url = img_url + `projects/image-processor/`;
+
+    const project_ppm_url = project_asset_url + `ppm/`;
+    const project_jpg_url = project_asset_url + `jpg/`;
+    const project_img_url = img_url + `background-landscape-wide.jpg`;
 
     return (
         <main id="content" className="container my-5">
@@ -292,45 +184,25 @@ function ImageProcessor({ project }) {
                     <p className="lexend">
                         Vous ne disposez pas d'images ? Vous pouvez téléchargez l'image incluse dans ce bloc.
                     </p>
-                    <div className="box mt-1 mb-0" style={{ height: 256 + "px" }}>
-                        <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                            <small className="font-monospace text-body-secondary">Image</small>
-                            <div className="d-flex ms-auto">
-                                <a href={project_asset_url + `background-landscape-wide.ppm`}
-                                    type="button" className="btn-download"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-custom-class="tooltip-main"
-                                    data-bs-title="Download"
-                                    download="example.ppm">
-                                    <i className="bi bi-download"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                            <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100"></img>
-                        </div>
-                    </div>
+                    <ImageBox
+                        title="Image"
+                        imgSrc={project_img_url}
+                        downloadSrc={project_ppm_url + `background-landscape-wide.ppm`}
+                        downloadName="example.ppm"
+                        classes="mt-1 mb-0"
+                        height={256}
+                    />
                 </article>
                 <article className="content-md row">
                     <div className="col-6">
-                        <div className="box mt-1 mb-0" style={{ height: 256 + "px" }}>
-                            <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                <small className="font-monospace text-body-secondary">Image</small>
-                                <div className="d-flex ms-auto">
-                                    <a href={project_asset_url + `background-landscape-wide.ppm`}
-                                        type="button" className="btn-download"
-                                        data-bs-toggle="tooltip"
-                                        data-bs-custom-class="tooltip-main"
-                                        data-bs-title="Download"
-                                        download="example.ppm">
-                                        <i className="bi bi-download"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="highlight-example overflow-hidden d-flex justify-content-center p-2" style={{ maxHeight: 256 + "px"}}>
-                                <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100"></img>
-                            </div>
-                        </div>
+                        <ImageBox
+                            title="Image"
+                            imgSrc={project_img_url}
+                            downloadSrc={project_ppm_url + `background-landscape-wide.ppm`}
+                            downloadName="example.ppm"
+                            classes="mt-1 mb-0"
+                            height={256}
+                        />
                     </div>
                     <div className="col-6">
                         <p className="lexend">
@@ -349,24 +221,14 @@ function ImageProcessor({ project }) {
                 </article>
                 <article className="content-lg row">
                     <div className="col-4">
-                        <div className="box mt-1 mb-0" style={{ height: 256 + "px" }}>
-                            <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                <small className="font-monospace text-body-secondary">Image</small>
-                                <div className="d-flex ms-auto">
-                                    <a href={project_asset_url + `background-landscape-wide.ppm`}
-                                        type="button" className="btn-download"
-                                        data-bs-toggle="tooltip"
-                                        data-bs-custom-class="tooltip-main"
-                                        data-bs-title="Download"
-                                        download="example.ppm">
-                                        <i className="bi bi-download"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="highlight-example overflow-hidden d-flex justify-content-center p-2" style={{ maxHeight: 256 + "px"}}>
-                                <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100"></img>
-                            </div>
-                        </div>
+                        <ImageBox
+                            title="Image"
+                            imgSrc={project_img_url}
+                            downloadSrc={project_ppm_url + `background-landscape-wide.ppm`}
+                            downloadName="example.ppm"
+                            classes="mt-1 mb-0"
+                            height={256}
+                        />
                     </div>
                     <div className="col-8">
                         <p className="lexend">
@@ -385,24 +247,14 @@ function ImageProcessor({ project }) {
                 </article>
                 <article className="content-xl row">
                     <div className="col-4">
-                        <div className="box mt-1 mb-0" style={{ height: 256 + "px" }}>
-                            <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                <small className="font-monospace text-body-secondary">Image</small>
-                                <div className="d-flex ms-auto">
-                                    <a href={project_asset_url + `background-landscape-wide.ppm`}
-                                        type="button" className="btn-download"
-                                        data-bs-toggle="tooltip"
-                                        data-bs-custom-class="tooltip-main"
-                                        data-bs-title="Download"
-                                        download="example.ppm">
-                                        <i className="bi bi-download"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="highlight-example overflow-hidden d-flex justify-content-center p-2" style={{ maxHeight: 256 + "px"}}>
-                                <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100"></img>
-                            </div>
-                        </div>
+                        <ImageBox
+                            title="Image"
+                            imgSrc={project_img_url}
+                            downloadSrc={project_ppm_url + `background-landscape-wide.ppm`}
+                            downloadName="example.ppm"
+                            classes="mt-1 mb-0"
+                            height={256}
+                        />
                     </div>
                     <div className="col-6">
                         <p className="lexend">
@@ -520,277 +372,113 @@ function ImageProcessor({ project }) {
                     </p>
                     <article className="content-sm">
                         <div className="box-group vertical-group">
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Composante rouge (R)</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-red.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-red.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-red.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante rouge"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Composante verte (G)</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-green.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-green.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-green.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante verte"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Composante bleue (B)</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-blue.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-blue.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-blue.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante bleue"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Composante rouge (R)"
+                                imgSrc={project_jpg_url + `background-landscape-wide-red.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-red.ppm`}
+                                downloadName="example-red.ppm"
+                            />
+                            <ImageBox
+                                title="Composante verte (G)"
+                                imgSrc={project_jpg_url + `background-landscape-wide-green.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-green.ppm`}
+                                downloadName="example-green.ppm"
+                            />
+                            <ImageBox
+                                title="Composante bleue (B)"
+                                imgSrc={project_jpg_url + `background-landscape-wide-blue.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-blue.ppm`}
+                                downloadName="example-blue.ppm"
+                            />
                         </div>
                     </article>
                     <article className="content-md">
                         <div className="box-group">
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Composante rouge (R)</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-red.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-red.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-red.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante rouge"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Composante verte (G)</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-green.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-green.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-green.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante verte"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Composante bleue (B)</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-blue.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-blue.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-blue.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante bleue"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Composante rouge (R)"
+                                imgSrc={project_jpg_url + `background-landscape-wide-red.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-red.ppm`}
+                                downloadName="example-red.ppm"
+                            />
+                            <ImageBox
+                                title="Composante verte (G)"
+                                imgSrc={project_jpg_url + `background-landscape-wide-green.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-green.ppm`}
+                                downloadName="example-green.ppm"
+                            />
+                            <ImageBox
+                                title="Composante bleue (B)"
+                                imgSrc={project_jpg_url + `background-landscape-wide-blue.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-blue.ppm`}
+                                downloadName="example-blue.ppm"
+                            />
                         </div>
                     </article>
                     <article className="content-lg row">
                         <div className="col-3">
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Image couleur d'origine</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image couleur d'origine"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Image couleur d'origine"
+                                imgSrc={project_img_url}
+                                downloadSrc={project_ppm_url + `background-landscape-wide.ppm`}
+                                downloadName="example.ppm"
+                            />
                         </div>
                         <div className="col-9">
                             <div className="box-group">
-                                <div className="box" style={{ height: 200 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Composante rouge (R)</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-red.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-red.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-red.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante rouge"></img>
-                                    </div>
-                                </div>
-                                <div className="box" style={{ height: 200 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Composante verte (G)</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-green.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-green.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-green.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante verte"></img>
-                                    </div>
-                                </div>
-                                <div className="box" style={{ height: 200 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Composante bleue (B)</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-blue.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-blue.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-blue.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante bleue"></img>
-                                    </div>
-                                </div>
+                                <ImageBox
+                                    title="Composante rouge (R)"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-red.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-red.ppm`}
+                                    downloadName="example-red.ppm"
+                                />
+                                <ImageBox
+                                    title="Composante verte (G)"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-green.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-green.ppm`}
+                                    downloadName="example-green.ppm"
+                                />
+                                <ImageBox
+                                    title="Composante bleue (B)"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-blue.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-blue.ppm`}
+                                    downloadName="example-blue.ppm"
+                                />
                             </div>
                         </div>
                     </article>
                     <article className="content-xxl row">
                         <div className="col-3">
-                            <div className="box" style={{ height: 256 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Image couleur d'origine</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image couleur d'origine"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Image couleur d'origine"
+                                imgSrc={project_img_url}
+                                downloadSrc={project_ppm_url + `background-landscape-wide.ppm`}
+                                downloadName="example.ppm"
+                                height={256}
+                            />
                         </div>
                         <div className="col-9">
                             <div className="box-group">
-                                <div className="box" style={{ height: 256 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Composante rouge (R)</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-red.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-red.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-red.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante rouge"></img>
-                                    </div>
-                                </div>
-                                <div className="box" style={{ height: 256 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Composante verte (G)</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-green.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-green.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-green.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante verte"></img>
-                                    </div>
-                                </div>
-                                <div className="box" style={{ height: 256 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Composante bleue (B)</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-blue.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-blue.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-blue.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Composante bleue"></img>
-                                    </div>
-                                </div>
+                                <ImageBox
+                                    title="Composante rouge (R)"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-red.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-red.ppm`}
+                                    downloadName="example-red.ppm"
+                                    height={256}
+                                />
+                                <ImageBox
+                                    title="Composante verte (G)"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-green.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-green.ppm`}
+                                    downloadName="example-green.ppm"
+                                    height={256}
+                                />
+                                <ImageBox
+                                    title="Composante bleue (B)"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-blue.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-blue.ppm`}
+                                    downloadName="example-blue.ppm"
+                                    height={256}
+                                />
                             </div>
                         </div>
                     </article>
@@ -815,24 +503,13 @@ function ImageProcessor({ project }) {
                     </article>
                     <article className="content-lg row">
                         <div className="col-4">
-                            <div className="box" style={{ height: 256 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Image d'origine</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image d'origine"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Image d'origine"
+                                imgSrc={project_img_url}
+                                downloadSrc={project_ppm_url + `background-landscape-wide.ppm`}
+                                downloadName="example.ppm"
+                                height={256}
+                            />
                         </div>
                         <div className="col-8">
                             <div className="box" style={{ height: 256 + "px" }}>
@@ -859,143 +536,62 @@ function ImageProcessor({ project }) {
                     </p>
                     <article className="content-sm">
                         <div className="box-group vertical-group">
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Niveaux de gris</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-gray.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-gray.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-gray.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Niveaux de gris"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Noir et blanc (seuillage)</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-black-n-white.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-black-n-white.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-black-n-white.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Noir et blanc (seuillage)"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Niveaux de gris"
+                                imgSrc={project_jpg_url + `background-landscape-wide-gray.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-gray.ppm`}
+                                downloadName="example-gray.ppm"
+                            />
+                            <ImageBox
+                                title="Noir et blanc (seuillage)"
+                                imgSrc={project_jpg_url + `background-landscape-wide-black-n-white.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-black-n-white.ppm`}
+                                downloadName="example-black-n-white.ppm"
+                            />
                         </div>
                     </article>
                     <article className="content-md">
                         <div className="box-group">
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Niveaux de gris</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-gray.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-gray.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-gray.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Niveaux de gris"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Noir et blanc (seuillage)</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-black-n-white.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-black-n-white.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-black-n-white.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Noir et blanc (seuillage)"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Niveaux de gris"
+                                imgSrc={project_jpg_url + `background-landscape-wide-gray.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-gray.ppm`}
+                                downloadName="example-gray.ppm"
+                            />
+                            <ImageBox
+                                title="Noir et blanc (seuillage)"
+                                imgSrc={project_jpg_url + `background-landscape-wide-black-n-white.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-black-n-white.ppm`}
+                                downloadName="example-black-n-white.ppm"
+                            />
                         </div>
                     </article>
                     <article className="content-lg row">
                         <div className="col-4">
-                            <div className="box" style={{ height: 256 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Image d'origine</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image d'origine"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Image d'origine"
+                                imgSrc={project_img_url}
+                                downloadSrc={project_ppm_url + `background-landscape-wide.ppm`}
+                                downloadName="example.ppm"
+                                height={256}
+                            />
                         </div>
                         <div className="col-8">
                             <div className="box-group">
-                                <div className="box" style={{ height: 256 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Niveaux de gris</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-gray.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-gray.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-gray.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Niveaux de gris"></img>
-                                    </div>
-                                </div>
-                                <div className="box" style={{ height: 256 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Noir et blanc (seuillage)</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-black-n-white.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-black-n-white.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-black-n-white.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Noir et blanc (seuillage)"></img>
-                                    </div>
-                                </div>
+                                <ImageBox
+                                    title="Niveaux de gris"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-gray.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-gray.ppm`}
+                                    downloadName="example-gray.ppm"
+                                    height={256}
+                                />
+                                <ImageBox
+                                    title="Noir et blanc (seuillage)"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-black-n-white.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-black-n-white.ppm`}
+                                    downloadName="example-black-n-white.ppm"
+                                    height={256}
+                                />
                             </div>
                         </div>
                     </article>
@@ -1009,202 +605,82 @@ function ImageProcessor({ project }) {
                         des coordonnées en programmation bas niveau.
                     </p>
                     <article className="content-sm">
-                        <h6 className="lexend">Rotation / retournement</h6>
+                        <h6 className="lexend">Rotation / Retournement</h6>
                         <div className="box-group vertical-group">
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Rotation 90°</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-90.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-90.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-90.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 90°"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Rotation 180°</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-180.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-180.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-180.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 180°"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Rotation 90°"
+                                imgSrc={project_jpg_url + `background-landscape-wide-90.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-90.ppm`}
+                                downloadName="example-90.ppm"
+                            />
+                            <ImageBox
+                                title="Rotation 180°"
+                                imgSrc={project_jpg_url + `background-landscape-wide-180.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-180.ppm`}
+                                downloadName="example-180.ppm"
+                            />
                         </div>
                         <h6 className="lexend">Zoom et rognage (crop)</h6>
                         <div className="box-group vertical-group">
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Cropage</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-cropped.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-cropped.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-cropped.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Cropage"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Agrandissement</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-zoom-out.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-zoom-out.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-zoom-out.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Agrandissement"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Rétrécissement</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-zoom-in.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-zoom-in.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-zoom-in.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rétrécissement"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Rognage"
+                                imgSrc={project_jpg_url + `background-landscape-wide-cropped.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-cropped.ppm`}
+                                downloadName="example-cropped.ppm"
+                            />
+                            <ImageBox
+                                title="Agrandissement"
+                                imgSrc={project_jpg_url + `background-landscape-wide-zoom-out.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-zoom-out.ppm`}
+                                downloadName="example-zoom-out.ppm"
+                            />
+                            <ImageBox
+                                title="Rétrécissement"
+                                imgSrc={project_jpg_url + `background-landscape-wide-zoom-in.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-zoom-in.ppm`}
+                                downloadName="example-zoom-in.ppm"
+                            />
                         </div>
                     </article>
                     <article className="content-md">
                         <div className="row">
                             <h6 className="lexend">Rotation / retournement</h6>
                             <div className="box-group">
-                                <div className="box" style={{ height: 200 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Rotation 90°</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-90.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-90.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-90.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 90°"></img>
-                                    </div>
-                                </div>
-                                <div className="box" style={{ height: 200 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Rotation 180°</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-180.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-180.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-180.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 180°"></img>
-                                    </div>
-                                </div>
+                                <ImageBox
+                                    title="Rotation 90°"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-90.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-90.ppm`}
+                                    downloadName="example-90.ppm"
+                                />
+                                <ImageBox
+                                    title="Rotation 180°"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-180.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-180.ppm`}
+                                    downloadName="example-180.ppm"
+                                />
                             </div>
                         </div>
                         <div className="row">
                             <h6 className="lexend">Zoom et rognage (crop)</h6>
                             <div className="box-group">
-                                <div className="box" style={{ height: 200 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Cropage</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-cropped.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-cropped.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-cropped.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Cropage"></img>
-                                    </div>
-                                </div>
-                                <div className="box" style={{ height: 200 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Agrandissement</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-zoom-out.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-zoom-out.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-zoom-out.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Agrandissement"></img>
-                                    </div>
-                                </div>
-                                <div className="box" style={{ height: 200 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Rétrécissement</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-zoom-in.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-zoom-in.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-zoom-in.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rétrécissement"></img>
-                                    </div>
-                                </div>
+                                <ImageBox
+                                    title="Rognage"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-cropped.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-cropped.ppm`}
+                                    downloadName="example-cropped.ppm"
+                                />
+                                <ImageBox
+                                    title="Agrandissement"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-zoom-out.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-zoom-out.ppm`}
+                                    downloadName="example-zoom-out.ppm"
+                                />
+                                <ImageBox
+                                    title="Rétrécissement"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-zoom-in.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-zoom-in.ppm`}
+                                    downloadName="example-zoom-in.ppm"
+                                />
                             </div>
                         </div>
                     </article>
@@ -1213,42 +689,20 @@ function ImageProcessor({ project }) {
                             <div className="col-8">
                                 <h6 className="lexend">Rotation / retournement</h6>
                                 <div className="box-group">
-                                    <div className="box" style={{ height: 256 + "px" }}>
-                                        <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                            <small className="font-monospace text-body-secondary">Rotation 90°</small>
-                                            <div className="d-flex ms-auto">
-                                                <a href={project_asset_url + `background-landscape-wide-90.ppm`}
-                                                    type="button" className="btn-download"
-                                                    data-bs-toggle="tooltip"
-                                                    data-bs-custom-class="tooltip-main"
-                                                    data-bs-title="Download"
-                                                    download="example-90.ppm">
-                                                    <i className="bi bi-download"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                            <img src={project_asset_url + `background-landscape-wide-90.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 90°"></img>
-                                        </div>
-                                    </div>
-                                    <div className="box" style={{ height: 256 + "px" }}>
-                                        <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                            <small className="font-monospace text-body-secondary">Rotation 180°</small>
-                                            <div className="d-flex ms-auto">
-                                                <a href={project_asset_url + `background-landscape-wide-180.ppm`}
-                                                    type="button" className="btn-download"
-                                                    data-bs-toggle="tooltip"
-                                                    data-bs-custom-class="tooltip-main"
-                                                    data-bs-title="Download"
-                                                    download="example-180.ppm">
-                                                    <i className="bi bi-download"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                            <img src={project_asset_url + `background-landscape-wide-180.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation 180°"></img>
-                                        </div>
-                                    </div>
+                                    <ImageBox
+                                    title="Rotation 90°"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-90.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-90.ppm`}
+                                    downloadName="example-90.ppm"
+                                    height={256}
+                                />
+                                <ImageBox
+                                    title="Rotation 180°"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-180.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-180.ppm`}
+                                    downloadName="example-180.ppm"
+                                    height={256}
+                                />
                                 </div>
                             </div>
                         </div>
@@ -1256,60 +710,27 @@ function ImageProcessor({ project }) {
                             <div className="col-12">
                                 <h6 className="lexend">Zoom et rognage (crop)</h6>
                                 <div className="box-group">
-                                    <div className="box" style={{ height: 256 + "px" }}>
-                                        <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                            <small className="font-monospace text-body-secondary">Cropage</small>
-                                            <div className="d-flex ms-auto">
-                                                <a href={project_asset_url + `background-landscape-wide-cropped.ppm`}
-                                                    type="button" className="btn-download"
-                                                    data-bs-toggle="tooltip"
-                                                    data-bs-custom-class="tooltip-main"
-                                                    data-bs-title="Download"
-                                                    download="example-cropped.ppm">
-                                                    <i className="bi bi-download"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                            <img src={project_asset_url + `background-landscape-wide-cropped.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Cropage"></img>
-                                        </div>
-                                    </div>
-                                    <div className="box" style={{ height: 256 + "px" }}>
-                                        <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                            <small className="font-monospace text-body-secondary">Agrandissement</small>
-                                            <div className="d-flex ms-auto">
-                                                <a href={project_asset_url + `background-landscape-wide-zoom-out.ppm`}
-                                                    type="button" className="btn-download"
-                                                    data-bs-toggle="tooltip"
-                                                    data-bs-custom-class="tooltip-main"
-                                                    data-bs-title="Download"
-                                                    download="example-zoom-out.ppm">
-                                                    <i className="bi bi-download"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                            <img src={project_asset_url + `background-landscape-wide-zoom-out.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Agrandissement"></img>
-                                        </div>
-                                    </div>
-                                    <div className="box" style={{ height: 256 + "px" }}>
-                                        <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                            <small className="font-monospace text-body-secondary">Rétrécissement</small>
-                                            <div className="d-flex ms-auto">
-                                                <a href={project_asset_url + `background-landscape-wide-zoom-in.ppm`}
-                                                    type="button" className="btn-download"
-                                                    data-bs-toggle="tooltip"
-                                                    data-bs-custom-class="tooltip-main"
-                                                    data-bs-title="Download"
-                                                    download="example-zoom-in.ppm">
-                                                    <i className="bi bi-download"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                            <img src={project_asset_url + `background-landscape-wide-zoom-in.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rétrécissement"></img>
-                                        </div>
-                                    </div>
+                                    <ImageBox
+                                        title="Rognage"
+                                        imgSrc={project_jpg_url + `background-landscape-wide-cropped.jpg`}
+                                        downloadSrc={project_ppm_url + `background-landscape-wide-cropped.ppm`}
+                                        downloadName="example-cropped.ppm"
+                                        height={256}
+                                    />
+                                    <ImageBox
+                                        title="Agrandissement"
+                                        imgSrc={project_jpg_url + `background-landscape-wide-zoom-out.jpg`}
+                                        downloadSrc={project_ppm_url + `background-landscape-wide-zoom-out.ppm`}
+                                        downloadName="example-zoom-out.ppm"
+                                        height={256}
+                                    />
+                                    <ImageBox
+                                        title="Rétrécissement"
+                                        imgSrc={project_jpg_url + `background-landscape-wide-zoom-in.jpg`}
+                                        downloadSrc={project_ppm_url + `background-landscape-wide-zoom-in.ppm`}
+                                        downloadName="example-zoom-in.ppm"
+                                        height={256}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -1321,143 +742,62 @@ function ImageProcessor({ project }) {
                     <h6 className="lexend">Rotation des couleurs</h6>
                     <article className="content-sm">
                         <div className="box-group vertical-group">
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Rotation une</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-filter-rotate-1.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-filter-rotate-1.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-filter-rotate-1.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation une"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Rotation deux</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-filter-rotate-2.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-filter-rotate-2.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-filter-rotate-2.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation deux"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Rotation une"
+                                imgSrc={project_jpg_url + `background-landscape-wide-filter-rotate-1.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-filter-rotate-1.ppm`}
+                                downloadName="example-filter-rotate-1.ppm"
+                            />
+                            <ImageBox
+                                title="Rotation deux"
+                                imgSrc={project_jpg_url + `background-landscape-wide-filter-rotate-2.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-filter-rotate-2.ppm`}
+                                downloadName="example-filter-rotate-2.ppm"
+                            />
                         </div>
                     </article>
                     <article className="content-md">
                         <div className="box-group">
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Rotation une</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-filter-rotate-1.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-filter-rotate-1.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-filter-rotate-1.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation une"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Rotation deux</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-filter-rotate-2.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-filter-rotate-2.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-filter-rotate-2.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation deux"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Rotation une"
+                                imgSrc={project_jpg_url + `background-landscape-wide-filter-rotate-1.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-filter-rotate-1.ppm`}
+                                downloadName="example-filter-rotate-1.ppm"
+                            />
+                            <ImageBox
+                                title="Rotation deux"
+                                imgSrc={project_jpg_url + `background-landscape-wide-filter-rotate-2.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-filter-rotate-2.ppm`}
+                                downloadName="example-filter-rotate-2.ppm"
+                            />
                         </div>
                     </article>
                     <article className="content-lg row">
                         <div className="col-4">
-                            <div className="box" style={{ height: 256 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Image d'origine</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={img_url + `background-landscape-wide.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Image d'origine"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Image d'origine"
+                                imgSrc={project_img_url}
+                                downloadSrc={project_ppm_url + `background-landscape-wide.ppm`}
+                                downloadName="example.ppm"
+                                height={256}
+                            />
                         </div>
                         <div className="col-8">
                             <div className="box-group">
-                                <div className="box" style={{ height: 256 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Rotation une</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-filter-rotate-1.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-filter-rotate-1.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-filter-rotate-1.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation une"></img>
-                                    </div>
-                                </div>
-                                <div className="box" style={{ height: 256 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Rotation deux</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-filter-rotate-2.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-filter-rotate-2.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-filter-rotate-2.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Rotation deux"></img>
-                                    </div>
-                                </div>
+                                <ImageBox
+                                    title="Rotation une"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-filter-rotate-1.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-filter-rotate-1.ppm`}
+                                    downloadName="example-filter-rotate-1.ppm"
+                                    height={256}
+                                />
+                                <ImageBox
+                                    title="Rotation deux"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-filter-rotate-2.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-filter-rotate-2.ppm`}
+                                    downloadName="example-filter-rotate-2.ppm"
+                                    height={256}
+                                />
                             </div>
                         </div>
                     </article>
@@ -1466,24 +806,12 @@ function ImageProcessor({ project }) {
                     <article className="content-sm">
                         <div className="row">
                             <div className="box-group vertical-group">
-                                <div className="box" style={{ height: 200 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Luminosité réduite</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-filter-low-lum.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-filter-low-lum.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-filter-low-lum.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Luminosité réduite"></img>
-                                    </div>
-                                </div>
+                                <ImageBox
+                                    title="Luminosité réduite"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-filter-low-lum.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-filter-low-lum.ppm`}
+                                    downloadName="example-filter-low-lum.ppm"
+                                />
                                 <div className="box" style={{ height: 200 + "px" }}>
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Histogramme : Distribution des niveaux de gris</small>
@@ -1496,24 +824,12 @@ function ImageProcessor({ project }) {
                         </div>
                         <div className="row">    
                             <div className="box-group vertical-group">
-                                <div className="box" style={{ height: 200 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Luminosité augmentée</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-filter-high-lum.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-filter-high-lum.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-filter-high-lum.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Luminosité augmentée"></img>
-                                    </div>
-                                </div>
+                                <ImageBox
+                                    title="Luminosité augmentée"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-filter-high-lum.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-filter-high-lum.ppm`}
+                                    downloadName="example-filter-high-lum.ppm"
+                                />
                                 <div className="box" style={{ height: 200 + "px" }}>
                                     <div className="d-flex align-items-center highlight-toolbar border-bottom">
                                         <small className="font-monospace text-body-secondary">Histogramme : Distribution des niveaux de gris</small>
@@ -1528,24 +844,13 @@ function ImageProcessor({ project }) {
                     <article className="content-lg">
                         <div className="row">
                             <div className="col-4">
-                                <div className="box" style={{ height: 256 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Luminosité réduite</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-filter-low-lum.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-filter-low-lum.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-filter-low-lum.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Luminosité réduite"></img>
-                                    </div>
-                                </div>
+                                <ImageBox
+                                    title="Luminosité réduite"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-filter-low-lum.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-filter-low-lum.ppm`}
+                                    downloadName="example-filter-low-lum.ppm"
+                                    height={256}
+                                />
                             </div>
                             <div className="col-8">
                                 <div className="box" style={{ height: 256 + "px" }}>
@@ -1560,24 +865,13 @@ function ImageProcessor({ project }) {
                         </div>
                         <div className="row">    
                             <div className="col-4">
-                                <div className="box" style={{ height: 256 + "px" }}>
-                                    <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                        <small className="font-monospace text-body-secondary">Luminosité augmentée</small>
-                                        <div className="d-flex ms-auto">
-                                            <a href={project_asset_url + `background-landscape-wide-filter-high-lum.ppm`}
-                                                type="button" className="btn-download"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-custom-class="tooltip-main"
-                                                data-bs-title="Download"
-                                                download="example-filter-high-lum.ppm">
-                                                <i className="bi bi-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                        <img src={project_asset_url + `background-landscape-wide-filter-high-lum.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Luminosité augmentée"></img>
-                                    </div>
-                                </div>
+                                <ImageBox
+                                    title="Luminosité augmentée"
+                                    imgSrc={project_jpg_url + `background-landscape-wide-filter-high-lum.jpg`}
+                                    downloadSrc={project_ppm_url + `background-landscape-wide-filter-high-lum.ppm`}
+                                    downloadName="example-filter-high-lum.ppm"
+                                    height={256}
+                                />
                             </div>
                             <div className="col-8">
                                 <div className="box" style={{ height: 256 + "px" }}>
@@ -1595,265 +889,139 @@ function ImageProcessor({ project }) {
                     <h6 className="lexend">Contraste</h6>
                     <article className="content-sm">
                         <div className="box-group">
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Contraste réduit</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-filter-low-con.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-filter-low-con.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-filter-low-con.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Contraste réduit"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Contraste augmenté</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-filter-high-con.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-filter-high-con.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-filter-high-con.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Contraste augmenté"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Contraste réduit"
+                                imgSrc={project_jpg_url + `background-landscape-wide-filter-low-con.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-filter-low-con.ppm`}
+                                downloadName="example-filter-low-con.ppm"
+                            />
+                            <ImageBox
+                                title="Contraste augmenté"
+                                imgSrc={project_jpg_url + `background-landscape-wide-filter-high-con.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-filter-high-con.ppm`}
+                                downloadName="example-filter-high-con.ppm"
+                            />
                         </div>
                     </article>
                     <article className="content-lg row">
                         <div className="col-6">
-                            <div className="box" style={{ height: 256 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Contraste réduit</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-filter-low-con.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-filter-low-con.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-filter-low-con.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Contraste réduit"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Contraste réduit"
+                                imgSrc={project_jpg_url + `background-landscape-wide-filter-low-con.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-filter-low-con.ppm`}
+                                downloadName="example-filter-low-con.ppm"
+                                height={256}
+                            />
                         </div>
                         <div className="col-6">
-                            <div className="box" style={{ height: 256 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Contraste augmenté</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-filter-high-con.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-filter-high-con.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-filter-high-con.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Contraste augmenté"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Contraste augmenté"
+                                imgSrc={project_jpg_url + `background-landscape-wide-filter-high-con.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-filter-high-con.ppm`}
+                                downloadName="example-filter-high-con.ppm"
+                                height={256}
+                            />
                         </div>
                     </article>
 
                     <h6 className="lexend">Simulation de daltonisme</h6>
                     <article className="content-sm">
                         <div className="box-group vertical-group">
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Deuteranopie</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-deuteranope.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-deuteranope.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-deuteranope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Deuteranopie"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Protanopie</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-protanope.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-protanope.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-protanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Protanopie"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Tripanopie</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-tripanope.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-tripanope.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-tripanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Tripanopie"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Deuteranopie"
+                                imgSrc={project_jpg_url + `background-landscape-wide-deuteranope.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-deuteranope.ppm`}
+                                downloadName="example-deuteranope.ppm"
+                            />
+                            <ImageBox
+                                title="Protanopie"
+                                imgSrc={project_jpg_url + `background-landscape-wide-protanope.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-protanope.ppm`}
+                                downloadName="example-protanope.ppm"
+                            />
+                            <ImageBox
+                                title="Tripanopie"
+                                imgSrc={project_jpg_url + `background-landscape-wide-tripanope.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-tripanope.ppm`}
+                                downloadName="example-tripanope.ppm"
+                            />
                         </div>
                     </article>
                     <article className="content-md">
                         <div className="box-group">
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Deuteranopie</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-deuteranope.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-deuteranope.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-deuteranope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Deuteranopie"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Protanopie</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-protanope.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-protanope.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-protanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Protanopie"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 200 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Tripanopie</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-tripanope.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-tripanope.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-tripanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Tripanopie"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Deuteranopie"
+                                imgSrc={project_jpg_url + `background-landscape-wide-deuteranope.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-deuteranope.ppm`}
+                                downloadName="example-deuteranope.ppm"
+                            />
+                            <ImageBox
+                                title="Protanopie"
+                                imgSrc={project_jpg_url + `background-landscape-wide-protanope.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-protanope.ppm`}
+                                downloadName="example-protanope.ppm"
+                            />
+                            <ImageBox
+                                title="Tripanopie"
+                                imgSrc={project_jpg_url + `background-landscape-wide-tripanope.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-tripanope.ppm`}
+                                downloadName="example-tripanope.ppm"
+                            />
                         </div>
                     </article>
                     <article className="content-lg">
                         <div className="box-group">
-                            <div className="box" style={{ height: 256 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Deuteranopie</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-deuteranope.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-deuteranope.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-deuteranope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Deuteranopie"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 256 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Protanopie</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-protanope.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-protanope.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-protanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Protanopie"></img>
-                                </div>
-                            </div>
-                            <div className="box" style={{ height: 256 + "px" }}>
-                                <div className="d-flex align-items-center highlight-toolbar border-bottom">
-                                    <small className="font-monospace text-body-secondary">Tripanopie</small>
-                                    <div className="d-flex ms-auto">
-                                        <a href={project_asset_url + `background-landscape-wide-tripanope.ppm`}
-                                            type="button" className="btn-download"
-                                            data-bs-toggle="tooltip"
-                                            data-bs-custom-class="tooltip-main"
-                                            data-bs-title="Download"
-                                            download="example-tripanope.ppm">
-                                            <i className="bi bi-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
-                                    <img src={project_asset_url + `background-landscape-wide-tripanope.jpg`} className="rounded object-fit-cover w-100 h-100" alt="Tripanopie"></img>
-                                </div>
-                            </div>
+                            <ImageBox
+                                title="Deuteranopie"
+                                imgSrc={project_jpg_url + `background-landscape-wide-deuteranope.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-deuteranope.ppm`}
+                                downloadName="example-deuteranope.ppm"
+                                height={256}
+                            />
+                            <ImageBox
+                                title="Protanopie"
+                                imgSrc={project_jpg_url + `background-landscape-wide-protanope.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-protanope.ppm`}
+                                downloadName="example-protanope.ppm"
+                                height={256}
+                            />
+                            <ImageBox
+                                title="Tripanopie"
+                                imgSrc={project_jpg_url + `background-landscape-wide-tripanope.jpg`}
+                                downloadSrc={project_ppm_url + `background-landscape-wide-tripanope.ppm`}
+                                downloadName="example-tripanope.ppm"
+                                height={256}
+                            />
                         </div>
                     </article>
                 </section>
             </section>
         </main>
+    );
+}
+
+function ImageBox({ title, imgSrc, downloadSrc, downloadName, classes, height = 200 }) {
+    return (
+        <div className={classes ? "box " + classes : "box"} style={{ height: height + "px" }}>
+            <div className="d-flex align-items-center highlight-toolbar border-bottom">
+                <small className="font-monospace text-body-secondary">{title}</small>
+                <div className="d-flex ms-auto">
+                    {downloadSrc && (
+                        <a href={downloadSrc}
+                            type="button" className="btn-download"
+                            data-bs-toggle="tooltip"
+                            data-bs-custom-class="tooltip-main"
+                            data-bs-title="Download"
+                            download={downloadName}>
+                            <i className="bi bi-download"></i>
+                        </a>
+                    )}
+                </div>
+            </div>
+            <div className="highlight-example overflow-hidden d-flex justify-content-center p-2">
+                <img src={imgSrc} className="rounded object-fit-cover w-100 h-100" loading="lazy" decoding="async" alt={title}></img>
+            </div>
+        </div>
     );
 }
 

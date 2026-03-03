@@ -177,9 +177,9 @@ function BioAboutMe() {
             <h1 className="lexend fw--normal w-100 text-center">A propos</h1>
             <p className="lexend w-100 text-center">
                 Je suis Aëlig Jiménez,
-                je suis étudiant 3e année année de BUT informatique parcours réalisation d'applications : « conception, développement, validation » à l’IUT de Paris-Saclay et en Alternance chez la maison d'édition ELLIPSES.
+                je suis étudiant en 3e année année de BUT informatique parcours réalisation d'applications : « conception, développement, validation » à l’IUT de Paris-Saclay et en Alternance chez la maison d'édition ELLIPSES.
                 <br/> <br/>
-                Passionné par la programmation, je suis curieux des nouvelles technologies et des innovations dans l'informatiques et les sciences.
+                Passionné par la programmation, je suis curieux des nouvelles technologies et des innovations dans l'informatique et les sciences.
                 Ce qui m’anime par-dessus tout, c’est l’algorithmie : j'aime comprendre les logiques, décortiquer les raisonnements et optimiser les solutions.
                 J’apprécie d’autant plus lorsqu'elles sont appliquées, notamment dans le domaine du jeu vidéo.
             </p>
@@ -226,7 +226,7 @@ function ProjectsLinkButton() {
 function BioInterest() {
     return (
         <section id="interests" className="w-100">
-            <h1 className="lexend fw--normal w-100 text-center">Centre d'intérêts</h1>
+            <h1 className="lexend fw--normal w-100 text-center">Centres d'intérêts</h1>
             <div className="content-sm">
                 <ListGroupWallet id="interests-list" expanded={true} json="interest.json" />
             </div>
@@ -468,7 +468,7 @@ function ExperiencePane() {
     return(
         <>
             <section id="education">
-                <h1 className="lexend fw--normal w-100 text-center mb-3">Education</h1>
+                <h1 className="lexend fw--normal w-100 text-center mb-3">Formation</h1>
                 <div className="content-sm">
                     <ListGroupWallet id="education-list-sm" expanded={true} json="education.json" body={body} head={head} />
                 </div>
@@ -477,7 +477,7 @@ function ExperiencePane() {
                 </div>
             </section>
             <section id="experience">
-                <h1 className="lexend fw--normal w-100 text-center mt-5 mb-3">Experience</h1>
+                <h1 className="lexend fw--normal w-100 text-center mt-5 mb-3">Expérience</h1>
                 <div className="content-sm">
                     <ListGroupWallet id="experience-list-sm" expanded={true} json="experience.json" body={body} head={head} />
                 </div>
