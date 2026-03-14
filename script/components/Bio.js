@@ -177,7 +177,7 @@ function BioAboutMe() {
             <h1 className="lexend fw--normal w-100 text-center">A propos</h1>
             <p className="lexend w-100 text-center">
                 Je suis Aëlig Jiménez,
-                je suis étudiant en 3e année année de BUT informatique parcours réalisation d'applications : « conception, développement, validation » à l’IUT de Paris-Saclay et en Alternance chez la maison d'édition ELLIPSES.
+                je suis étudiant en 3e année de BUT informatique parcours réalisation d'applications : « conception, développement, validation » à l’IUT de Paris-Saclay et en Alternance chez la maison d'édition ELLIPSES.
                 <br/> <br/>
                 Passionné par la programmation, je suis curieux des nouvelles technologies et des innovations dans l'informatique et les sciences.
                 Ce qui m’anime par-dessus tout, c’est l’algorithmie : j'aime comprendre les logiques, décortiquer les raisonnements et optimiser les solutions.

@@ -140,20 +140,8 @@ function ImageProcessor({ project }) {
 
     return (
         <main id="content" className="container my-5">
-            <section className="sticky-top header-action bg-white d-flex gap-4 py-3">
-                <a href="#" className="btn btn-hover-main lexend shadow">
-                    <i className="bi bi-arrow-left me-2"></i>
-                    Retour à la liste
-                </a>
-                <a href={project.github} className="btn btn-hover-main lexend shadow">
-                    <i className="bi bi-github me-2"></i>
-                    Code source
-                </a>
-                <a href={asset_url + `exe/main.exe`} className="btn btn-hover-main lexend shadow ms-auto">
-                    <i className="bi bi-filetype-exe me-2"></i>
-                    Exécutable
-                </a>
-            </section>
+            {console.log(project.git)}
+            <HeaderActions git={project.git} exe={`exe/main.exe`} />
 
             <section>
                 <h2 className="lexend fw--normal mt-5">Présentation</h2>
